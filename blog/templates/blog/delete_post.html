@@ -1,0 +1,38 @@
+{% extends 'blog/basic.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+	{% if user.id == post.author.id %}
+		<article class="media content-section" style="width: 610px; border: 2px solid gray;  
+		              padding: 10px; border-radius: 10px;  
+		                              margin:5px;">
+		    <div class="media-body">
+		        <div class="article-metadata">
+		            <h3 style="font-family: 'Arial Black', sans-serif;font-size: 2.5em;letter-spacing: -1px;background-color: ;color: #5d607c;">By {{post.author}}</h3>
+		            <small class="text-muted">{{post.date_posted|date:"F d, Y"}}</small>
+		            <a href="{% url 'update_view' post.pk %}"><button type="submit" class="btn btn-outline-secondary" style="float: right;">Edit</button></a>
+		        </div>
+		        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+		        <h2 class="article-title" style="color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0;">
+		            <a href="{% url 'article_detail' post.pk %}" target="_blank" style="color: inherit;">{{post.title}}</h2><br></a>
+		        <p class="article-content" style=" color: #5d607c; font-family: 'Source Sans Pro', sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; margin: 0 0 24px; ">{{post.content}}</p>
+		    </div>
+		</article>
+		<form method="POST">
+		    {% csrf_token %}
+		    <div class="container">
+		        <h5 class="article-title" style="color:  #4d4d33
+		; font-family: 'Trocchi', serif;  font-weight: normal; line-height: 48px; margin: 0;">
+		            Are you sure you want to delete?</h5>
+		        <button class="btn btn-outline-secondary">Delete</button>
+		    </div>
+		</form>
+	{% endif %}
+{% else %}
+<div id="demotext" style="color: #202c2d;
+background: #FFFFFF;
+text-shadow: 0 1px #808d93, -1px 0 #cdd2d5, -1px 2px #808d93, -2px 1px #cdd2d5, -2px 3px #808d93, -3px 2px #cdd2d5, -3px 4px #808d93, -4px 3px #cdd2d5, -4px 5px #808d93, -5px 4px #cdd2d5, -5px 6px #808d93, -6px 5px #cdd2d5, -6px 7px #808d93, -7px 6px #cdd2d5, -7px 8px #808d93, -8px 7px #cdd2d5;
+color: #202c2d;font-size: 50px
+" class="col-md-12">Oops! you are not logged in.<br> To delete a post please log in <a href="{% url 'login' %}">here</a>!
+</div>
+{% endif %}
+{% endblock %}

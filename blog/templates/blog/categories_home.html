@@ -1,0 +1,8 @@
+{% extends 'blog/basic.html' %}
+{% block content %}
+<h1 style="color: #7c795d; font-family: 'Brush Script MT', serif; font-size: 50px; font-weight: normal; line-height: 48px; margin:0;text-align: center;">BLOG CATEGORIES</h1>
+<br>
+{% for item in posts %}
+<a class="dropdown-item" href="{% url 'category' item %}">{{item.name}}</a>
+{% endfor %}
+{% endblock %}

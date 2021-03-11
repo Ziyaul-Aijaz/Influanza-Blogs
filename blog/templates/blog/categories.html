@@ -1,0 +1,39 @@
+{% extends "blog/basic.html" %}
+{% block content %}
+{% if category_posts %}
+<h1 style="color: #7c795d; font-family: 'Brush Script MT', serif; font-size: 50px; font-weight: normal; line-height: 48px; margin:0;">
+Category- {{ cats }}  </h1><br>
+{% for post in category_posts %}
+<article class="media content-section" style="width: 610px; border: 2px solid gray;  
+              padding: 10px; border-radius: 10px;  
+                              margin:5px;">
+    <div class="media-body">
+        <div class="article-metadata">
+
+            <h3 style="font-family: 'Arial Black', sans-serif;font-size: 2.5em;letter-spacing: -1px;background-color: ;color: #5d607c;">By {{post.author}}</h3>
+            <small class="text-muted">{{post.date_posted|date:"F d, Y"}}</small><br>
+            <small class="text-muted">Blog Category- {{post.category}}</small> {% if user.is_authenticated %}
+                        {% if user.id == post.author.id %}
+                            <a href="{% url 'update_view' post.pk %}"><button type="submit" class="btn btn-outline-secondary ml-2" style="float: right;" >Edit</button></a>
+
+                            <a href="{% url 'remove_post' post.pk %}"><button type="submit" class="btn btn-outline-secondary" style="float: right;" >Delete</button></a>
+                        {% endif %}
+                    {% endif %}
+        </div>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+            
+            <h2 class="article-title" style="color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0;">
+                <a href="{% url 'article_detail' post.pk %}" target="_blank" style="color: inherit;">{{post.title}}</h2><br></a>
+            <p class="article-content" style=" color: #5d607c; font-family: 'Source Sans Pro', sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; margin: 0 0 24px; ">{{post.content|safe}}</p>
+        
+    </div>
+
+</article>
+{% endfor %}
+
+{% else %}
+
+<h1 style="color: #7c795d; font-family: 'Brush Script MT', serif; font-size: 50px; font-weight: normal; line-height: 48px; margin:0;text-align: center;"> ERROR 404<br> There are no posts in this category.</h1>
+<h1 style="color: #7c795d; font-family: 'Brush Script MT', serif; font-size: 50px; font-weight: normal; line-height: 48px; margin:0;text-align: center;"> Please make one <a href="{% url 'add_post' %}">here</a> or head towards <a href="{% url 'blog-home' %}">HOME</a> page.</h1>
+{% endif %}
+{% endblock %}  

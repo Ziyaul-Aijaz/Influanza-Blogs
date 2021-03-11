@@ -1,0 +1,27 @@
+{% extends "blog/basic.html" %}
+{% load static %}
+<!--{% load crispy_forms_tags %}
+-->
+{% block content %}
+<!--<style>
+body {
+  background-image: url('{% static 'blog/1308869.jpg' %}');
+}
+</style>-->
+<!--<img src="{% static 'blog/1308869.jpg' %}" alt="My image">-->
+
+<div class="col-md-12">
+<h1 style="color: #7c795d; font-family: 'Brush Script MT', serif; font-size: 50px; font-weight: normal; line-height: 48px; margin:0;">Login</h1><br>
+<div class="form-group">
+<form method="POST">
+	{% csrf_token %}
+	<!--{{form | crispy}}-->
+	{{form.as_p}}
+	<button type="submit" class="btn btn-outline-secondary">Login</button>
+</form>
+
+</div>
+<small class="text-muted">Forgot Password?<a href="{% url 'password_reset' %}">Click Here!</a></small>
+<h5 style="color: black; font-family: 'TimesNewRoman', serif; font-size: 20px; font-weight: normal; line-height: 48px; margin:0;">Don't have an account? <a href="{% url 'register' %}">Sign up</a></h5>
+</div>
+{% endblock %}

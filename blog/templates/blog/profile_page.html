@@ -1,0 +1,38 @@
+{% extends "blog/basic.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<article class="media content-section" style="width: 610px; border: 2px solid gray;  
+              padding: 10px; border-radius: 10px;  
+                              margin:5px;">
+    <div class="media-body">
+        <div class="article-metadata">
+
+            <h3 style="font-family: 'Arial Black', sans-serif;font-size: 2.5em;letter-spacing: -1px;background-color: ;color: #5d607c;">{{user.username}}</h3>
+            <small class="text-muted">{{user.email}} </small>
+            
+        
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+        <div class="row">
+        	<div class="col-md-4">
+        		<img class="rounded-circle" src="{{user.profile.dp.url}}" width="200" height="300">
+        	</div>
+        <div class="col-md-8"><p class="article-content ml-4" style=" color: #5d607c; font-family: 'Source Sans Pro', sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; margin: 0 0 24px; text-align: justify;">{{user.profile.bio}}</p>
+        
+        </div>
+        
+    </div>
+    </div>
+
+
+</article>
+<div class="form-group">
+<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ p_form | crispy }}
+	
+	<button type="submit" class="btn btn-outline-secondary">Edit Profile</button>
+</form>
+</div>
+
+{% endblock %}

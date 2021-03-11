@@ -1,0 +1,19 @@
+{% extends "blog/basic.html" %}
+{% load static %}
+{%  load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="col-md-12">
+<h1 style="color: #7c795d; font-family: 'Brush Script MT', serif; font-size: 50px; font-weight: normal; line-height: 48px; margin:0;">Edit Your Profile</h1><br>
+{{user.user_profile.bio}}
+<div class="form-group">
+<form method="POST">
+	{% csrf_token %}
+	{{ form | crispy }}	
+	<h3 style="color: black; font-family: 'TimesNewRoman', serif;  font-weight: normal; line-height: 48px; margin:0;"><a href="{% url 'password_change' %}" style="color: inherit">Change your password here</a></h3><br>
+	<button type="submit" class="btn btn-outline-secondary">Update Profile</button>
+</form>
+</div>
+</div>
+{% endblock %}
