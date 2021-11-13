@@ -1,1 +1,1 @@
-web: gunicorn textutils.wsgi --log-file -
+web: gunicorn influanza.wsgi --log-file -
