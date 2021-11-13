@@ -25,7 +25,7 @@ SECRET_KEY = '_zs)n$5ib=6^ta&dds36#nz!$f#(184fzwln98jez1k-fj0qr@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://influanza.herokuapp.com/']
 
 
 # Application definition
