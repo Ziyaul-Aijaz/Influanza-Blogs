@@ -25,7 +25,7 @@ SECRET_KEY = '_zs)n$5ib=6^ta&dds36#nz!$f#(184fzwln98jez1k-fj0qr@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://influanza.herokuapp.com/']
+ALLOWED_HOSTS = ['influanza.herokuapp.com']
 
 
 # Application definition
@@ -133,9 +133,7 @@ SITE_ID=1
                             
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
-STATICFILES_DIRS=(
-    os.path.join(BASE_DIR,'static'),
-    )
+
 
 LOGIN_REDIRECT_URL='blog-home'
 LOGOUT_REDIRECT_URL='blog-home'
